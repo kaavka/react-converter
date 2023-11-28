@@ -37,7 +37,6 @@ export function Converter() {
     currentCurrency[initialCurrency.value][convertCurrency.value]
   );
 
-  console.log(convertCurrency, currentCurrency[initialCurrency.value][convertCurrency.value])
   const [disabledOptions, setDisabledOptions] = useState<Option[]>([]);
 
   useEffect(() => {

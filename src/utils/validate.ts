@@ -1,4 +1,10 @@
+import { MAX_INPUT_LENGTH } from "./constants.ts";
+
 export function validate(value: string) {
+  if (value.length > MAX_INPUT_LENGTH) {
+    return value.slice(0, value.length - 1);
+  }
+
   if (value.startsWith('0,')) {
     return value;
   }
