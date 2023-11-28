@@ -36,3 +36,5 @@ This React application, built with TypeScript and Vite, fetches data from [Excha
 1. Clone the repository.
 2. Run `npm install` to install dependencies.
 3. Execute `npm run dev` to start the development server.
+
+## [DEMO](https://kaavka.github.io/react-converter/)
