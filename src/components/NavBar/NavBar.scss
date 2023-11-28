@@ -1,0 +1,31 @@
+@import 'src/mixins';
+@import 'src/variables';
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+
+  @include on-tablet {
+    gap: 20px;
+  }
+
+  @include on-desktop {
+    gap: 40px;
+  }
+
+  &__link {
+    font-family: Roboto, sans-serif;
+    font-weight: $text-weight-secondary-accent;
+    line-height: 150%;
+    font-size: 16px;
+
+    @include on-tablet {
+      font-size: 32px;
+    }
+
+    @include on-desktop {
+      font-size: 38px;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+@import 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap';
+@import './mixins';
+@import 'variables';
+
+.page {
+  height: 100vh;
+  padding: 20px;
+  background-color: $color-template-secondary;
+
+  @include grid-template;
+
+  &__converter {
+    grid-column: span 6;
+
+    @include on-tablet {
+      grid-column: 3 / 10;
+    }
+
+    @include on-desktop {
+      grid-column: 8 / 17;
+    }
+  }
+}

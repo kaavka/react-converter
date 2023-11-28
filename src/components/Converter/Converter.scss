@@ -1,0 +1,13 @@
+.converter {
+  top: 115px;
+  position: sticky;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+
+  &__pair {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+}

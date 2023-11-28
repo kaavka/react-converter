@@ -1,0 +1,25 @@
+@import 'src/variables';
+@import 'src/mixins';
+
+.currency {
+  font-family: Roboto, sans-serif;
+  font-weight: $text-weight-regular;
+  font-size: 14px;
+  display: flex;
+  flex-flow: column wrap;
+  gap: 5px;
+  align-items: center;
+
+  @include on-tablet {
+    font-size: 20px;
+  }
+
+  @include on-desktop {
+    font-size: 22px;
+  }
+
+  &__pair {
+    display: flex;
+    gap: 3px
+  }
+}

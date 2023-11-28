@@ -1,0 +1,12 @@
+@import "src/mixins";
+
+.logo-link {
+  &__image {
+    width: 64px;
+    object-fit: contain;
+
+    @include on-tablet {
+        width: 80px;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+@import 'src/variables';
+
+.footer {
+  background-color: $color-template-main;
+  position: sticky;
+  top: 100%;
+  padding: 20px;
+  box-shadow: rgb(0 0 0 / 16%) 0 10px 36px 0, rgb(0 0 0 / 6%) 0 0 0 1px;
+}

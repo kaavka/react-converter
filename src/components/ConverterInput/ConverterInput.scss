@@ -1,0 +1,30 @@
+@import 'src/variables';
+@import 'src/mixins';
+
+.converter-input {
+  background-color: #FAF6F0;
+  outline: none;
+  width: 100%;
+  text-align: center;
+  height: 20px;
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  border-top-right-radius: 10%;
+  border-top-left-radius: 10%;
+  box-shadow: rgb(17 12 46 / 15%) 0 48px 100px 0;
+  transition-duration: $effect-duration;
+
+  &:focus {
+    background-color: #F4DFC8;
+  }
+
+  @include on-tablet {
+    font-size: 22px;
+    height: 40px;
+  }
+
+  @include on-desktop {
+    font-size: 26px;
+    height: 60px;
+  }
+}
