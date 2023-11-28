@@ -4,7 +4,7 @@ export function LogoLink() {
     <a className={'logo-link'} href={'/'}>
       <img
         className={'logo-link__image'}
-        src={'/logo-high-resolution-logo-black-transparent.png'}
+        src={'./logo-high-resolution-logo-black-transparent.png'}
         alt={'company logo'}
       />
     </a>

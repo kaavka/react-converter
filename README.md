@@ -10,12 +10,13 @@ This React application, built with TypeScript and Vite, fetches data from [Excha
 
 3. **Sticky Header**: The header is a sticky element, ensuring it is always accessible to the user. The header displays the current exchange rates for UAH in USD and EUR.
 
-4. **Navigation**: The logo in the header leads to the home page, and additional pages are under development and accessible through the navbar.
+4. **Navigation**: The logo in the header leads to the home page, and additional pages using React router to switch pages accessible through the navbar.
 
 5. **Converter Component**: The Converter component includes two inputs for the initial value and the converter, along with select menus for currency changes. Input values are validated to remove leading zeros and enforce a maximum value length.
 
 ## Used Libraries
 
+- [React-router](https://github.com/remix-run/react-router)
 - [React-select](https://github.com/JedWatson/react-select)
 - [React-loader](https://github.com/website-local/react-loader)
 - [QueryString](https://github.com/sindresorhus/query-string)

@@ -45,21 +45,19 @@ export const CurrencyContextProvider: React.FC<Props> = ({ children }) => {
       ];
 
       try {
-        await Promise.all(
-          currenciesToFetch.map(async (currency) => {
-            const response = await getLatest(currency);
-            const { base, rates} = response;
+        currenciesToFetch.map(async (currency) => {
+          const response = await getLatest(currency);
+          const { base, rates} = response;
 
-            setCurrentCurrency((prevState) => (
-              {
-                ...prevState,
-                [base]: rates,
-              }
-            ));
+          setCurrentCurrency((prevState) => (
+            {
+              ...prevState,
+              [base]: rates,
+            }
+          ));
 
-            return response;
-          })
-        );
+          return response;
+        })
       } catch (error) {
         console.error('Error appeared in data fetching', error);
         setErrorMessage('Unable to create connection with server, try again later')

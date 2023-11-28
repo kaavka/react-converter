@@ -1,9 +1,8 @@
 import './App.scss'
 import Header from "./components/Header/Header.tsx";
-import { Converter } from "./components/Converter/Converter.tsx";
 import { Footer } from "./components/Footer/Footer.tsx";
+import { Outlet } from "react-router-dom";
 
-// ask if token written right
 
 function App() {
   return (
@@ -12,7 +11,7 @@ function App() {
 
       <main className={'page'}>
         <article className={'page__converter'}>
-          <Converter />
+          <Outlet />
         </article>
       </main>
 
