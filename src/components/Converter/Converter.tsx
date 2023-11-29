@@ -32,10 +32,8 @@ export function Converter() {
   const [convertCurrency, setConvertCurrency] = useState<Option>(
     options.current[1],
   );
-  const [initialValue, setInitialValue] = useState<number>(1);
-  const [convertedValue, setConvertedValue] = useState<number>(
-    currentCurrency[initialCurrency.value][convertCurrency.value]
-  );
+  const [initialValue, setInitialValue] = useState<number>(0);
+  const [convertedValue, setConvertedValue] = useState<number>(0);
 
   const [disabledOptions, setDisabledOptions] = useState<Option[]>([]);
 
