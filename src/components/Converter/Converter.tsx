@@ -14,6 +14,13 @@ interface Option {
   label: string;
 }
 
+interface ConverterState {
+  initialCurrency: Option;
+  convertCurrency: Option;
+  initialValue: number;
+  convertedValue: number;
+}
+
 export function Converter() {
   const {
     errorMessage,
@@ -26,49 +33,63 @@ export function Converter() {
     label: option,
   })))
 
-  const [initialCurrency, setInitialCurrency] = useState<Option>(
-    options.current[0],
-  );
-  const [convertCurrency, setConvertCurrency] = useState<Option>(
-    options.current[1],
-  );
-  const [initialValue, setInitialValue] = useState<number>(0);
-  const [convertedValue, setConvertedValue] = useState<number>(0);
+  const [converterState, setConverterState] = useState<ConverterState>({
+    initialCurrency: options.current[0],
+    convertCurrency: options.current[1],
+    initialValue: 0,
+    convertedValue: 0,
+  });
 
   const [disabledOptions, setDisabledOptions] = useState<Option[]>([]);
 
   useEffect(() => {
-    setDisabledOptions([initialCurrency, convertCurrency]);
-  }, [initialCurrency.value, convertCurrency.value]);
+    setDisabledOptions([converterState.initialCurrency, converterState.convertCurrency]);
+  }, [converterState.initialCurrency.value, converterState.convertCurrency.value]);
 
   const onInitialValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(validate(event.target.value));
 
-    setInitialValue(value);
-    const converted = calculate(value, currentCurrency[convertCurrency.value][initialCurrency.value]);
-    setConvertedValue(converted);
+    setConverterState(prevState => ({
+      ...prevState,
+      initialValue: value,
+      convertedValue: calculate(
+        value, currentCurrency[converterState.convertCurrency.value][converterState.initialCurrency.value]
+      ),
+    }));
   };
 
-  const onConvertedValueChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const onConvertedValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value: number  = Number(validate(event.target.value));
 
-    setConvertedValue(value);
-    const converted = calculate(value, currentCurrency[convertCurrency.value][initialCurrency.value]);
-    setInitialValue(converted);
+    setConverterState(prevState => ({
+      ...prevState,
+      convertedValue: value,
+      initialValue: calculate(
+        value, currentCurrency[converterState.convertCurrency.value][converterState.initialCurrency.value]
+      ),
+    }));
   };
 
   const setCurrencyConvert = (option: Option) => {
-    const value = calculate(convertedValue, currentCurrency[option.value][initialCurrency.value])
-    setInitialValue(value);
-    setConvertCurrency(option);
+    const value = calculate(
+      converterState.convertedValue, currentCurrency[option.value][converterState.initialCurrency.value]
+    )
+    setConverterState(prevState => ({
+      ...prevState,
+      initialValue: value,
+      convertCurrency: option,
+    }));
   };
 
   const setCurrencyInitial = (option: Option) => {
-    const value = calculate(initialValue, currentCurrency[option.value][convertCurrency.value])
-    setConvertedValue(value);
-    setInitialCurrency(option);
+    const value = calculate(
+      converterState.initialValue, currentCurrency[option.value][converterState.convertCurrency.value]
+    )
+    setConverterState(prevState => ({
+      ...prevState,
+      convertedValue: value,
+      initialCurrency: option,
+    }));
   };
 
   const loadedWithError = !isLoading && errorMessage;
@@ -82,25 +103,25 @@ export function Converter() {
         <div className={"converter__pair"}>
           <ConverterInput
             onChange={onInitialValueChange}
-            value={initialValue}
+            value={converterState.initialValue}
           />
           <Select
             isOptionDisabled={({ value }) => disabledOptions.some(option => option.value === value)}
             options={options.current}
             onChange={(option) => setCurrencyInitial(option as Option)}
-            value={initialCurrency}
+            value={converterState.initialCurrency}
           />
         </div>
 
         <div className={"converter__pair"}>
           <ConverterInput
             onChange={onConvertedValueChange}
-            value={convertedValue}
+            value={converterState.convertedValue}
           />
           <Select
             isOptionDisabled={({ value }) => disabledOptions.some(option => option.value === value)}
             options={options.current}
-            value={convertCurrency}
+            value={converterState.convertCurrency}
             onChange={(option) => setCurrencyConvert(option as Option)}
           />
         </div>
