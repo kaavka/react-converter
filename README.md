@@ -1,6 +1,6 @@
 # [Currency converter](https://kaavka.github.io/react-converter/)
 
-This sophisticated React application, meticulously crafted with TypeScript and Vite, seamlessly fetches real-time exchange rate data from the [Exchange Rates API](https://exchangeratesapi.io/). The app boasts a user-friendly interface, efficient data handling, and various features for a smooth user experience.
+This sophisticated React application, meticulously crafted with TypeScript and Vite, seamlessly fetches real-time exchange rate data from the [Exchange Rates API](https://fxratesapi.com/). The app boasts a user-friendly interface, efficient data handling, and various features for a smooth user experience.
 
 ## Features
 
@@ -59,6 +59,55 @@ The `Converter` component facilitates seamless currency conversion within the ap
 
 4. **validate:**
     - Validates input values, removing leading zeros and enforcing a maximum value length.
+
+### **wait:**
+Introduces a delay between consecutive API requests to mitigate potential errors.
+
+When multiple requests are made to the API without a delay, errors may occur. For instance, when retrieving exchange rates based on EUR, USD, and UAH, the initial response provides data in the following format:
+```js
+{
+   "success": true,
+   "terms": "https://fxratesapi.com/legal/terms-conditions",
+   "privacy": "https://fxratesapi.com/legal/privacy-policy",
+   "timestamp": 1698061860,
+   "date": "2023-10-23T11:51:00.000Z",
+   "base": "EUR",
+   "rates": {
+      USD: 1.1,
+      UAH: 0.2,
+   }
+};
+```
+Subsequent responses maintain the same base property as the initial request and include rates requested currencies:
+```js
+{
+   "success": true,
+   "terms": "https://fxratesapi.com/legal/terms-conditions",
+   "privacy": "https://fxratesapi.com/legal/privacy-policy",
+   "timestamp": 1698061860,
+   "date": "2023-10-23T11:51:00.000Z",
+   "base": "EUR",
+   "rates": {
+      EUR: 1.1,
+      USD: 0.2,
+   }
+};
+
+{
+   "success": true,
+   "terms": "https://fxratesapi.com/legal/terms-conditions",
+   "privacy": "https://fxratesapi.com/legal/privacy-policy",
+   "timestamp": 1698061860,
+   "date": "2023-10-23T11:51:00.000Z",
+   "base": "EUR", // remains the same
+   "rates": {
+      EUR: 1.1,
+      UAH: 0.2,
+   }
+};
+```
+
+This function introduces a small delay between API calls, ensuring reliable processing and reducing the likelihood of errors.
 
 ## Usage
 

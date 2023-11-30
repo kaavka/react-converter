@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Currency } from "../types/Currency.ts";
 import { getLatest } from "../api/currency.ts";
 import { createOptions } from "../utils/createOptions.ts";
+import { wait } from "../utils/wait.ts";
 
 interface CurrencyContext {
   currentCurrency: Currency
@@ -46,16 +47,21 @@ export const CurrencyContextProvider: React.FC<Props> = ({ children }) => {
 
       try {
         const responses = await Promise.all(
-          currenciesToFetch.map(async (currency) => {
+          currenciesToFetch.map(async (currency, index) => {
+            // This function described in readme, read it please
+            await wait(100 * index);
+
             return getLatest(currency);
           })
         )
+
         const formattedResponses = responses.reduce((acc, { base, rates }) => {
           return {
             ...acc,
             [base]: rates
           }
         }, {})
+
         setCurrentCurrency(formattedResponses);
       } catch (error) {
         console.error('Error appeared in data fetching', error);
@@ -65,6 +71,7 @@ export const CurrencyContextProvider: React.FC<Props> = ({ children }) => {
       }
     };
 
+    setIsLoading(true);
     fetchData();
   }, []);
 
