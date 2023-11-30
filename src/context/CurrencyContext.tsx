@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Currency } from "../Types/Currency.ts";
+import { Currency } from "../types/Currency.ts";
 import { getLatest } from "../api/currency.ts";
 import { createOptions } from "../utils/createOptions.ts";
 
@@ -45,19 +45,18 @@ export const CurrencyContextProvider: React.FC<Props> = ({ children }) => {
       ];
 
       try {
-        await Promise.all(
+        const responses = await Promise.all(
           currenciesToFetch.map(async (currency) => {
-            const response = await getLatest(currency);
-            const { base, rates} = response;
-
-            setCurrentCurrency((prevState) => (
-              {
-                ...prevState,
-                [base]: rates,
-              }
-            ));
+            return getLatest(currency);
           })
         )
+        const formattedResponses = responses.reduce((acc, { base, rates }) => {
+          return {
+            ...acc,
+            [base]: rates
+          }
+        }, {})
+        setCurrentCurrency(formattedResponses);
       } catch (error) {
         console.error('Error appeared in data fetching', error);
         setErrorMessage('Unable to create connection with server, try again later')

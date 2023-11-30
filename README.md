@@ -1,4 +1,4 @@
-# React + TypeScript + Vite Exchange Rate App
+# [Currency converter](https://kaavka.github.io/react-converter/)
 
 This sophisticated React application, meticulously crafted with TypeScript and Vite, seamlessly fetches real-time exchange rate data from the [Exchange Rates API](https://exchangeratesapi.io/). The app boasts a user-friendly interface, efficient data handling, and various features for a smooth user experience.
 
@@ -65,5 +65,3 @@ The `Converter` component facilitates seamless currency conversion within the ap
 1. **Clone the repository.**
 2. Run `npm install` to install dependencies.
 3. Execute `npm run dev` to start the development server.
-
-## [DEMO](https://kaavka.github.io/react-converter/)
