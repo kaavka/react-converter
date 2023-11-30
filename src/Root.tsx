@@ -4,10 +4,10 @@ import {
   Routes,
 } from 'react-router-dom';
 import App from './App';
-import { ConverterPage } from './Pages/ConverterPage.tsx';
-import { HistoryPage } from './Pages/HistoryPage.tsx';
-import { AboutPage } from "./Pages/AboutPage.tsx";
-import { UnknownPage } from './Pages/UnknownPage';
+import { ConverterPage } from './pages/ConverterPage.tsx';
+import { HistoryPage } from './pages/HistoryPage.tsx';
+import { AboutPage } from "./pages/AboutPage.tsx";
+import { UnknownPage } from './pages/UnknownPage';
 
 export const Root: React.FC = () => {
   return (

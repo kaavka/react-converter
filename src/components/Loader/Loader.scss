@@ -1,6 +1,12 @@
+@import "src/mixins";
+
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 40px;
+  height: 15px;
+
+  @include on-tablet {
+    height: 40px;
+  }
 }

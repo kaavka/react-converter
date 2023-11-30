@@ -1,6 +1,6 @@
 import { client } from "../utils/fetchClient.ts";
-import { LatestResponse } from "../Types/LatestResponse.ts";
-import { Options } from "../Types/Options.ts";
+import { LatestResponse } from "../types/LatestResponse.ts";
+import { Options } from "../types/Options.ts";
 import queryString from "query-string";
 
 
